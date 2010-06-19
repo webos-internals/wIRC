@@ -58,7 +58,9 @@ DccListAssistant.prototype.setup = function()
 	{
 		itemTemplate: "dcc-list/dcc-row",
 		swipeToDelete: false,
-		reorderable: false
+		reorderable: false,
+		dividerTemplate: "dcc-list/sender-divider",
+		dividerFunction: this.getSenderDivider.bind(this)
 	};
 	if (!this.server)
 	{
@@ -77,9 +79,15 @@ DccListAssistant.prototype.setup = function()
 	this.refreshTimer = setTimeout(this.refreshList.bind(this), 100);
 }
 
+DccListAssistant.prototype.getSenderDivider = function(item) {  
+    if (item.sender) return item.sender;
+	else return '';
+}
+
 DccListAssistant.prototype.refreshList = function()
 {
-	this.updateList();
+	if (this.controller.stageController.isActiveAndHasScenes())
+		this.updateList();
 	this.refreshTimer = setTimeout(this.refreshList.bind(this), 100);
 }
 

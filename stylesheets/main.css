@@ -666,6 +666,9 @@ body.palm-dark .channel-users #searchText
 .dcc-list #dccList .palm-row-wrapper
 {
 	position: relative;
+	border-style:inset;
+	border-width:1px;
+	height: 52px;
 }
 .dcc-list #dccList .palm-row-wrapper .icon
 {
@@ -686,7 +689,7 @@ body.palm-dark .channel-users #searchText
 	z-index: -1;
 	position: absolute;
 	width: 100%;
-	height: 52px;
+	height: 100%;
 }
 .dcc-list #dccList .palm-row-wrapper.send .progress .bar
 {
@@ -704,40 +707,44 @@ body.palm-dark .channel-users #searchText
 {
 	background: url(../images/send-progress-fail.png) top left repeat-x;
 }
-.dcc-list #dccList .palm-row-wrapper.send .title
+.dcc-list #dccList .palm-row-wrapper.send .text1
 {
-	padding-top: 4px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 	margin-top: 0px;
-}
-.dcc-list #dccList .palm-row-wrapper.send .sub
-{
-	color: #999;
 	font-size: 14px;
-	padding-top: 0px;
-	margin-top: -19px;
-	padding-left: 16px;
-	padding-bottom: 9px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+.dcc-list #dccList .palm-row-wrapper.send .text2
+{
+	font-size: 14px;
+	padding-top: 0px;
+	margin-top: 2px;
+	padding-bottom: 9px;
 }
 .dcc-list #dccList .palm-row-wrapper.chat .icon
 {
 	background: url(../icon-dcc-chat.png) center center no-repeat;
 }
 .dcc-list #dccList .palm-row-wrapper.chat .progress,
-.dcc-list #dccList .palm-row-wrapper.chat .file
+.dcc-list #dccList .palm-row-wrapper.chat .text1
 {
-	display: none;
-}
-.dcc-list #dccList .palm-row-wrapper .title
-{
+	padding-top: 3px;
+	padding-bottom: 3px;
 	margin-top: 0px;
-	margin-left: 0px;
-	padding-left: 0px;
+	font-size: 14px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+.dcc-list #dccList .palm-row-wrapper.chat .text2
+{
+	font-size: 14px;
+	padding-top: 0px;
+	margin-top: 2px;
+	padding-bottom: 9px;
 }
 
 

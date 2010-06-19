@@ -13,6 +13,9 @@ function ircDcc(params)
 	this.address =		params.address;
 	this.filename =		params.filename;
 	this.size =			params.size;
+	this.path =			'/media/internal/wirc/downloads/';
+	
+	this.startTime = 	false;
 	
 	this.status = 		false;
 	this.fstatus = 		0;
@@ -115,12 +118,13 @@ ircDcc.prototype.closeRequest = function()
 
 ircDcc.prototype.accept = function()
 {
+	this.startTime = new Date();
 	if (this.isFile())
 	{
 		this.picker = new filePicker({
 			type: 'folder',
 			pop: true,
-			folder: '/media/internal/wIRC/downloads/',
+			folder: this.path,
 			onSelect: this.acceptSend.bind(this)
 		});
 	}
@@ -133,8 +137,8 @@ ircDcc.prototype.acceptSend = function(value)
 {
 	if (value)
 	{
-		this.filename = value + this.filename;
-		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, this.filename);
+		this.path = value;
+		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, this.path + this.filename);
 		this.server.openDccList();
 	}
 	else
@@ -487,22 +491,32 @@ ircDcc.prototype.getListObject = function()
 		key:		this.server.getDccArrayKey(this.id),
 		id:			this.id,
 		server:		(this.server.alias?this.server.alias:this.server.address),
-		text:		this.nick.name,
 		type:		'',
 		bitsIn:		this.bitsIn,
 		bitsOut:	this.bitsOut,
-		filename:	this.filename,
+		size:		this.size,
+		filename:	'',
+		fstatus:	'',
+		sender:		this.nick.name,
 		percent:	(this.percent ? this.percent : 0),
-		rowClass:	''
+		rowClass:	'',
+		text1:		'',
+		text2:		'',
 	};
 	
 	if (this.isChat())
 	{
+		var date = 'Start time: ' + Mojo.Format.formatDate(this.startTime, 'short');
+		alert(date);
 		obj.type = 'chat';
+		obj.text1 = date;
+		obj.text2 = this.bitsIn + ' : ' + this.bitsOut;
 	}
 	else
 	{
 		obj.type = 'send';
+		obj.text1 = this.filename;
+		obj.text2 = this.bitsIn + ' / ' + this.size;
 		switch (this.fstatus) {
 			case 0: obj.fstatus = 'active'; break;
 			case 1: obj.fstatus = 'complete'; break;
