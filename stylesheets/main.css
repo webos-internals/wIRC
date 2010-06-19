@@ -690,8 +690,19 @@ body.palm-dark .channel-users #searchText
 }
 .dcc-list #dccList .palm-row-wrapper.send .progress .bar
 {
-	background: url(../images/send-progress.png) top left repeat-x;
 	height: 100%;
+}
+.dcc-list #dccList .palm-row-wrapper.send .progress .bar.active
+{
+	background: url(../images/send-progress.png) top left repeat-x;
+}
+.dcc-list #dccList .palm-row-wrapper.send .progress .bar.complete
+{
+	background: url(../images/send-progress-complete.png) top left repeat-x;
+}
+.dcc-list #dccList .palm-row-wrapper.send .progress .bar.fail
+{
+	background: url(../images/send-progress-fail.png) top left repeat-x;
 }
 .dcc-list #dccList .palm-row-wrapper.send .title
 {

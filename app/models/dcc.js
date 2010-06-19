@@ -15,6 +15,7 @@ function ircDcc(params)
 	this.size =			params.size;
 	
 	this.status = 		false;
+	this.fstatus = 		0;
 	
 	this.picker =		false;
 	
@@ -151,13 +152,14 @@ ircDcc.prototype.decline = function()
 
 ircDcc.prototype.handleEvent = function(status, length, data)
 {
-	this.bitsIn += parseInt(length);
+	var l = parseInt(length);
+	this.bitsIn += l;
 	
 	//alert('status: '+status+', length: '+length+', data: '+data);
 	
 	if (this.isChat())
 	{
-		if (length == 0 && data == '(null)') {
+		if (l == 0 && data == '(null)') {
 			if (this.status > 0) {
 				this.newMessage('type2', false, 'DCC CHAT to ' + this.nick.name + ' lost (' + status + ')');
 				this.status = 0;
@@ -173,8 +175,17 @@ ircDcc.prototype.handleEvent = function(status, length, data)
 				this.newMessage('privmsg', this.nick, data);
 		}
 	}
-	else
-		this.percent = this.bitsIn/this.size*100;
+	else {
+		if (parseInt(data))
+			this.percent = this.bitsIn/this.size*100;
+		else {
+			if (parseInt(status))
+				this.fstatus = 2;
+			else
+				this.fstatus = 1;;
+		}		
+	}
+
 }
 
 ircDcc.prototype.newCommand = function(message)
@@ -492,6 +503,11 @@ ircDcc.prototype.getListObject = function()
 	else
 	{
 		obj.type = 'send';
+		switch (this.fstatus) {
+			case 0: obj.fstatus = 'active'; break;
+			case 1: obj.fstatus = 'complete'; break;
+			case 2: obj.fstatus = 'fail'; break;
+		}
 	}
 	
 	return obj;
