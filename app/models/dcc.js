@@ -121,6 +121,7 @@ ircDcc.prototype.accept = function()
 	this.startTime = new Date();
 	if (this.isFile())
 	{
+		alert('Got here 1');
 		this.picker = new filePicker({
 			type: 'folder',
 			pop: true,
@@ -130,7 +131,8 @@ ircDcc.prototype.accept = function()
 	}
 	else
 	{
-		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, "");
+		alert('Got here 2');
+		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, "", 0);
 	}
 }
 ircDcc.prototype.acceptSend = function(value)
@@ -138,7 +140,7 @@ ircDcc.prototype.acceptSend = function(value)
 	if (value)
 	{
 		this.path = value;
-		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, this.path + this.filename);
+		plugin.dcc_accept(servers.getServerArrayKey(this.server.id), this.id, this.path + this.filename, this.size);
 		this.server.openDccList();
 	}
 	else

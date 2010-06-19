@@ -352,42 +352,53 @@ void handle_dcc_chat_callback(irc_session_t * session, irc_dcc_t dcc_id,
 void handle_dcc_send_callback(irc_session_t * session, irc_dcc_t dcc_id,
 		int status, void * ctx, const char * data, unsigned int length) {
 
-	wIRCd_client_t *client = (wIRCd_client_t*) irc_get_ctx(session);
-
 	//syslog(LOG_INFO, "%d %d %s", status, length, data);
 
+	wIRCd_client_t *client = (wIRCd_client_t*) irc_get_ctx(session);
+	dcc_send_t *dccInfo = (dcc_send_t*)ctx;
+
+	int oldProgress = dccInfo->progress;
+
+	dccInfo->bitsIn += length;
+	dccInfo->progress = dccInfo->bitsIn / dccInfo->size;
+
 	if (length > 0)
-		fwrite(data, length, 1, (FILE*)ctx);
-	else
-		fclose((FILE*)ctx);
+		fwrite(data, length, 1, dccInfo->file);
+	else {
+		fclose(dccInfo->file);
+		free(dccInfo);
+	}
 
-	char *id = 0, *status_s = 0, *dcc_id_s = 0, *length_s = 0, *data_s = 0;
+	if (dccInfo->progress > oldProgress) {
+		char *id = 0, *status_s = 0, *dcc_id_s = 0, *length_s = 0, *data_s = 0;
 
-	asprintf(&id, "%d", client->id);
-	asprintf(&dcc_id_s, "%u", dcc_id);
-	asprintf(&status_s, "%d", status);
-	asprintf(&length_s, "%u", length);
-	asprintf(&data_s, "%d", (data == 0) ? 0 : 1);
+		asprintf(&id, "%d", client->id);
+		asprintf(&dcc_id_s, "%u", dcc_id);
+		asprintf(&status_s, "%d", status);
+		asprintf(&length_s, "%u", length);
+		asprintf(&data_s, "%d", (data == 0) ? 0 : 1);
 
-	const char *payload[5];
-	payload[0] = id;
-	payload[1] = dcc_id_s;
-	payload[2] = status_s;
-	payload[3] = length_s;
-	payload[4] = data_s;
+		const char *payload[5];
+		payload[0] = id;
+		payload[1] = dcc_id_s;
+		payload[2] = status_s;
+		payload[3] = length_s;
+		payload[4] = data_s;
 
-	PDL_CallJS("handle_dcc_callback", payload, 5);
+		PDL_CallJS("handle_dcc_callback", payload, 5);
 
-	if (id)
-		free(id);
-	if (status_s)
-		free(status_s);
-	if (dcc_id_s)
-		free(dcc_id_s);
-	if (length_s)
-		free(length_s);
-	if (data_s)
-		free(data_s);
+		if (id)
+			free(id);
+		if (status_s)
+			free(status_s);
+		if (dcc_id_s)
+			free(dcc_id_s);
+		if (length_s)
+			free(length_s);
+		if (data_s)
+			free(data_s);
+	}
+
 }
 
 void handle_dcc_sendfile_callback(irc_session_t * session, irc_dcc_t dcc_id,

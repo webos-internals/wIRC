@@ -283,15 +283,15 @@ PDL_bool client_dcc_accept(PDL_JSParameters *params) {
 	char *file = strdup(PDL_GetJSParamString(params, 2));
 	PDL_bool ret = 0;
 	if (strlen(file) > 0) {
-		FILE *f = malloc(sizeof(FILE));
-		f = fopen(file, "w");
+		dcc_send_t *dccInfo = malloc(sizeof(dcc_send_t));
+		dccInfo->size = PDL_GetJSParamInt(params, 3);
+		dccInfo->file = fopen(file, "w");
+		dccInfo->bitsIn = 0;
 		ret = irc_dcc_accept(servers[PDL_GetJSParamInt(params, 0)].session,
-				PDL_GetJSParamInt(params, 1), f, handle_dcc_send_callback);
+				PDL_GetJSParamInt(params, 1), dccInfo, handle_dcc_send_callback);
 	} else
 		ret = irc_dcc_accept(servers[PDL_GetJSParamInt(params, 0)].session,
 				PDL_GetJSParamInt(params, 1), 0, handle_dcc_chat_callback);
-	if (file)
-		free(file);
 	return ret;
 }
 

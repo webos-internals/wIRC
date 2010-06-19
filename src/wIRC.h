@@ -106,6 +106,13 @@ typedef struct {
 
 wIRCd_client_t *servers;
 
+typedef struct {
+	FILE *file;
+	int bitsIn;
+	int size;
+	int progress;
+} dcc_send_t;
+
 int plugin_client_init();
 void plugin_start();
 void plugin_cleanup();
