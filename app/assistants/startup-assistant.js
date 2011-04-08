@@ -11,6 +11,13 @@ function StartupAssistant(changelog)
     this.newMessages =
 	[
 		{
+                        version: '0.3.11',
+                        log:
+                        [
+                                'Get appid from mojo instead of hardcoding it'
+                        ]
+                },
+		{
 			version: '0.3.10',
 			log:
 			[
