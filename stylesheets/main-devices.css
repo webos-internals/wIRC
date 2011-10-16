@@ -1,3 +1,9 @@
+.palm-scrim
+{
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
 /*
  * Small Devices, Pixi/Veer
  */
@@ -24,6 +30,67 @@ body.small-device .channel-list #spinner
 	margin-top: 70px;
 }
 
+
+/*
+ * Pre3
+ */
+
+
+body.pre3 .server-list #noServers .icon,
+body.pre3 .server-list #noPlugin .icon
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 170px;
+}
+
+body.pre3 .server-status #connectButton
+{
+	top: 250px;
+	left: 20%;
+	right: 20%;
+	width: 60%;
+}
+
+body.pre3 .channel-list #spinner
+{
+	margin-top: 190px;
+}
+body.pre3 .inputFooter
+{
+	width: 100%;
+}
+body.pre3 .channel-chat #topicContainer
+{
+	width: 100% !important;
+}
+
+body.pre3 .form .palm-row-wrapper .slider
+{
+	float: right;
+	margin-right: 10px;
+}
+body.pre3 .form .font-fix
+{
+	display: block;
+	clear: both;
+}
+body.pre3 .fixed.fixed-15 .message-row .nick { width: 15%; }
+body.pre3 .fixed.fixed-20 .message-row .nick { width: 20%; }
+body.pre3 .fixed.fixed-25 .message-row .nick { width: 25%; }
+body.pre3 .fixed.fixed-30 .message-row .nick { width: 30%; }
+body.pre3 .fixed.fixed-35 .message-row .nick { width: 35%; }
+body.pre3 .fixed.fixed-40 .message-row .nick { width: 40%; }
+body.pre3 .fixed.fixed-45 .message-row .nick { width: 45%; }
+body.pre3 .fixed.fixed-50 .message-row .nick { width: 50%; }
+body.pre3 .fixed.fixed-15 .message-row .message { width: 82%; }
+body.pre3 .fixed.fixed-20 .message-row .message { width: 77%; }
+body.pre3 .fixed.fixed-25 .message-row .message { width: 72%; }
+body.pre3 .fixed.fixed-30 .message-row .message { width: 67%; }
+body.pre3 .fixed.fixed-35 .message-row .message { width: 62%; }
+body.pre3 .fixed.fixed-40 .message-row .message { width: 47%; }
+body.pre3 .fixed.fixed-45 .message-row .message { width: 52%; }
+body.pre3 .fixed.fixed-50 .message-row .message { width: 47%; }
 
 
 /*

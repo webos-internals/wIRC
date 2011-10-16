@@ -3,10 +3,10 @@
  */
 .scene-fade-top
 {
-	position: fixed; 
-	top: 0px; 
+	position: fixed;
+	top: 0px;
 	z-index: 11000;
-	height: 30px; 
+	height: 30px;
 	width: 100%;
 	background: url(../images/palm-default/fade-top.png) top center repeat-x;
 	-webkit-palm-mouse-target: ignore;

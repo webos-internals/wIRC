@@ -299,6 +299,8 @@ setTheme = function(doc, theme)
 	if (Mojo.Environment.DeviceInfo.modelNameAscii == 'Pixi' ||
 		Mojo.Environment.DeviceInfo.modelNameAscii == 'Veer')
 		deviceTheme = ' small-device';
+	if (Mojo.Environment.DeviceInfo.modelNameAscii == 'Pre3')
+		deviceTheme = ' pre3';
 	if (Mojo.Environment.DeviceInfo.modelNameAscii == 'TouchPad')
 		deviceTheme = ' no-gesture';
 	
