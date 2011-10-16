@@ -11,6 +11,13 @@ function StartupAssistant(changelog)
     this.newMessages =
 	[
 		{
+		version: '0.4.7',
+			log:
+			[
+				'Fixes for Pre3 Screen size'
+			]
+		},
+		{
 		version: '0.4.6',
 			log:
 			[
