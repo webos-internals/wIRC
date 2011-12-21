@@ -8,24 +8,23 @@ Usage
 -----
 
 * Nick Auto Complete
-** After typing some of the nick, hold the gesture area, and press the orange button.
-** If not the right nick, keep holding the gesture area, and press the orange button again.
+	* After typing some of the nick, hold the gesture area, and press the orange button.
+	* If not the right nick, keep holding the gesture area, and press the orange button again.
 * Command History:
-** Hold the gesture area and press the Q or A buttons to go through the list
-
+	* Hold the gesture area and press the Q or A buttons to go through the list
 * Supported Commands:
-** /away
-** /join, /j
-** /kick
-** /list
-** /me
-** /mode
-** /nick
-** /part, /leave
-** /query, /msg, /ns, /authserv
-** /quit
-** /topic
-** /whois
-** /notice
-** /raw, /quote
-** /ping
+	* /away
+	* /join, /j
+	* /kick
+	* /list
+	* /me
+	* /mode
+	* /nick
+	* /part, /leave
+	* /query, /msg, /ns, /authserv
+	* /quit
+	* /topic
+	* /whois
+	* /notice
+	* /raw, /quote
+	* /ping
